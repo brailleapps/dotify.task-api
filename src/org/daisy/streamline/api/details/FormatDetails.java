@@ -17,6 +17,7 @@ import org.daisy.streamline.api.media.FormatIdentifier;
 public final class FormatDetails {
 	private final FormatIdentifier identifier;
 	private final Set<String> extensions;
+	private final Optional<String> mediaType;
 	private final String displayName;
 	private final Optional<String> description;
 	
@@ -27,6 +28,7 @@ public final class FormatDetails {
 		private final FormatIdentifier identifier;
 		private String displayName;
 		private Set<String> extensions = null;
+		private String mediaType = null;
 		private String description = null;
 		
 		private Builder(FormatIdentifier identifier) {
@@ -66,6 +68,16 @@ public final class FormatDetails {
 		}
 		
 		/**
+		 * Sets the media type for the format details.
+		 * @param value the media type
+		 * @return this builder
+		 */
+		public Builder mediaType(String value) {
+			mediaType = value;
+			return this;
+		}
+		
+		/**
 		 * Creates a new builder with the current configuration 
 		 * of this builder.
 		 * @return a new {@link FormatDetails} instance
@@ -88,6 +100,7 @@ public final class FormatDetails {
 		this.identifier = builder.identifier;
 		this.extensions = Collections.unmodifiableSet(builder.extensions==null?new HashSet<>():builder.extensions);
 		this.displayName = builder.displayName;
+		this.mediaType = Optional.ofNullable(builder.mediaType);
 		this.description = Optional.ofNullable(builder.description);
 	}
 
@@ -121,6 +134,14 @@ public final class FormatDetails {
 	 */
 	public Optional<String> getDescription() {
 		return description;
+	}
+	
+	/**
+	 * Gets the media type for this format.
+	 * @return an optional with the media type, or an empty optional if no media type is available
+	 */
+	public Optional<String> getMediaType() {
+		return mediaType;
 	}
 	
 }

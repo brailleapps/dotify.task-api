@@ -82,7 +82,7 @@ jar {
 	manifest {
 		attributes(
 			'-sources': 'true',
-			'Export-Package': 'org.daisy.streamline.api.*',
+			'-exportcontents': '${packages;VERSIONED}',
 			'Automatic-Module-Name': "$moduleName",
 			'Bundle-Name': "$bundleName",
 			'Bundle-SymbolicName': "$bundleName",
